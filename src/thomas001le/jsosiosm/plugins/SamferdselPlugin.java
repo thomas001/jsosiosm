@@ -104,10 +104,13 @@ public class SamferdselPlugin extends AbstractParserPlugin {
 			
 			String medium = parseMedium(gr);
 			if(medium != null) {
-				if(medium.equals("L"))
+				if(medium.equals("L")) {
 					tags.put("bridge", "yes");
-				else if(medium.equals("U"))
+					tags.put("layer","1");
+				} else if(medium.equals("U")) {
 					tags.put("tunnel", "yes");
+					tags.put("layer", "-1");
+				}
 			}
 			
 			return TagsResult.tags(tags);
