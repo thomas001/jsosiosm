@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="JSOSIOSM">
+	<property environment="env" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.8" />
+	<property name="source" value="1.8" />
+	<path id="JSOSIOSM.classpath">
+		<pathelement location="target/classes" />
+		<pathelement location="lib/proj4j-0.1.0.jar" />
+		<pathelement location="lib/protobuf-java-3.0.0-pre.jar" />
+		<pathelement location="lib/hppc-0.6.0.jar" />
+		<pathelement location="lib/commons-cli-1.2.jar" />
+	</path>
+	<target name="init">
+		<mkdir dir="target/classes" />
+		<copy includeemptydirs="false" todir="target/classes">
+			<fileset dir="src">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+	<target name="clean">
+		<delete dir="target/classes" />
+	</target>
+	<target depends="clean" name="cleanall" />
+	<target depends="build-subprojects,build-project" name="build" />
+	<target name="build-subprojects" />
+	<target depends="init" name="build-project">
+		<echo message="${ant.project.name}: ${ant.file}" />
+		<javac debug="true" debuglevel="${debuglevel}" destdir="target/classes" includeantruntime="false" source="${source}" target="${target}">
+			<src path="src" />
+			<classpath refid="JSOSIOSM.classpath" />
+		</javac>
+	</target>
+	<target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects" />
+	<target name="Main">
+		<java classname="thomas001le.jsosiosm.Main" failonerror="true" fork="yes">
+			<classpath refid="JSOSIOSM.classpath" />
+		</java>
+	</target>
+	<target name="create_run_jar" depends="build">
+		<jar destfile="target/JSOSIOSM.jar">
+			<manifest>
+				<attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader" />
+				<attribute name="Rsrc-Main-Class" value="thomas001le.jsosiosm.Main" />
+				<attribute name="Class-Path" value="." />
+				<attribute name="Rsrc-Class-Path" value="./ proj4j-0.1.0.jar protobuf-java-3.0.0-pre.jar hppc-0.6.0.jar commons-cli-1.2.jar" />
+			</manifest>
+			<zipfileset dir="lib" includes="jar-in-jar-loader.zip" />
+			<fileset dir="target/classes" />
+			<zipfileset dir="lib" includes="proj4j-0.1.0.jar" />
+			<zipfileset dir="lib" includes="protobuf-java-3.0.0-pre.jar" />
+			<zipfileset dir="lib" includes="hppc-0.6.0.jar" />
+			<zipfileset dir="lib" includes="commons-cli-1.2.jar" />
+		</jar>
+	</target>
+</project>
