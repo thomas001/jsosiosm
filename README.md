@@ -7,7 +7,7 @@ I was simply not satisfied with the quality of the OSM coverage of norway. More 
 The program understands most of the objects in the "N50" maps and translates them to usable OSM tags. SOSI polygons are correctly translated into multi polygons. The main part missing is the inclusion of the name database, only mountain and town names are currently used.
 
 ## Technology
-The program is written in Java (I had a toy python implementation before, but it was too slow). Java seems to be quite popular in the OSM community (JOSM, mkgmap,...). Input files can be .sos or .sos.gz. Output files can be .osm or .osm.pbf. All translations are currently implemented directly in Java, though stub support for loading javascript to do the translation is there.
+The program is written in Java (I had a toy python implementation before, but it was too slow). Java seems to be quite popular in the OSM community (JOSM, mkgmap,...). Input files can be .sos or .sos.gz. I do not use the official SOSI parsing library [FYBA](https://github.com/kartverket/fyba), but my own parser implementation. Output files can be .osm or .osm.pbf. All translations are currently implemented directly in Java, though stub support for loading javascript to do the translation is there.
 
 ## Example
 ```
