@@ -57,6 +57,9 @@
 			<zipfileset dir="lib" includes="protobuf-java-3.0.0-pre.jar" />
 			<zipfileset dir="lib" includes="hppc-0.6.0.jar" />
 			<zipfileset dir="lib" includes="commons-cli-1.2.jar" />
+			<service type="java.nio.charset.spi.CharsetProvider">
+				<provider classname="thomas001le.jsosiosm.iso_8859_10.ISO885910Provider" />
+			</service>
 		</jar>
 	</target>
 </project>

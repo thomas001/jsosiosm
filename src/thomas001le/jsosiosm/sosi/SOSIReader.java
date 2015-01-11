@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
-import thomas001le.jsosiosm.iso_8859_10.ISO885910Charset;
-
 public class SOSIReader<T extends Group> {
 	/*
 	 *     elementnavn_re = re.compile(r'^(?![\d])[\d\w\-_]+')
@@ -98,7 +96,7 @@ public class SOSIReader<T extends Group> {
 	}
 	
 	public SOSIReader(InputStream input, GroupFactory<T> factory) throws IOException {
-		Reader reader = new InputStreamReader(input, new ISO885910Charset());
+		Reader reader = new InputStreamReader(input, "ISO-8859-10");
 		this.scanner = new PatternScanner(reader);
 		this.factory = factory;
 	}
