@@ -51,7 +51,7 @@
 				<attribute name="Class-Path" value="." />
 				<attribute name="Rsrc-Class-Path" value="./ proj4j-0.1.0.jar protobuf-java-3.0.0-pre.jar hppc-0.6.0.jar commons-cli-1.2.jar" />
 			</manifest>
-			<zipfileset dir="lib" includes="jar-in-jar-loader.zip" />
+			<zipfileset  src="lib/jar-in-jar-loader.zip" />
 			<fileset dir="target/classes" />
 			<zipfileset dir="lib" includes="proj4j-0.1.0.jar" />
 			<zipfileset dir="lib" includes="protobuf-java-3.0.0-pre.jar" />
