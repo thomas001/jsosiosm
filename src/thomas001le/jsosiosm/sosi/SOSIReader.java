@@ -1,5 +1,7 @@
 package thomas001le.jsosiosm.sosi;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -7,6 +9,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.MatchResult;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SOSIReader<T extends Group> {
@@ -95,8 +98,41 @@ public class SOSIReader<T extends Group> {
 		return nextGroupItem(factory);
 	}
 	
+	private String guessEncoding(InputStream input) throws IOException {
+		
+		Pattern tegnsett_pat = Pattern.compile("(?uU)\\.\\.TEGNSETT\\s+([^\\s]+)");
+		Pattern group_pat = Pattern.compile("(?uU)\\.\\w");
+		
+		BufferedReader reader = new BufferedReader(new InputStreamReader(input,"US-ASCII"), 1024);
+		input.mark(4096);
+		try {
+			String line;
+			int group_num = 0;
+			while( (line=reader.readLine()) != null ) {
+				Matcher matcher = tegnsett_pat.matcher(line);
+				if(matcher.lookingAt()) {
+					return matcher.group(1);
+				}
+				
+				if(group_pat.matcher(line).lookingAt())
+					group_num ++;
+				
+				if( group_num > 1) 
+					break;
+			}
+		} finally {
+			input.reset();
+			// do not close the reader and hence the input stream 
+			// reader.close();
+		}
+		return "ISO-8859-10"; 
+	}
+	
 	public SOSIReader(InputStream input, GroupFactory<T> factory) throws IOException {
-		Reader reader = new InputStreamReader(input, "ISO-8859-10");
+		if( !input.markSupported() )
+			input = new BufferedInputStream(input);
+		String encoding = guessEncoding(input);
+		Reader reader = new InputStreamReader(input, encoding);
 		this.scanner = new PatternScanner(reader);
 		this.factory = factory;
 	}
