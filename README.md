@@ -1,5 +1,8 @@
 # jsosiosm
 
+## How to build
+Run `ant` to just build the class files. Use `ant create_run_jar` to create a runnable jar file in the directory target.
+
 ## Motivation
 I was simply not satisfied with the quality of the OSM coverage of norway. More concrete paths i wanted to take for my hiking tour were not in the map. Hence i searched for different map sources and found the official maps available from the Norwegian mapping authority. Unfortunately, they use there own format, SOSI, which needs to be converted to OSM.
 
