@@ -33,6 +33,8 @@ public class BygningerPlugin extends AbstractParserPlugin {
 			buildingGroup("building=farm_auxiliary", 172, 181, 182, 183, 193, 216, 224, 241,
 					243, 244, 245, 248, 249, 654, 830, 840 );
 			
+			buildingGroup("building=industrial", 211, 212, 214, 219, 221, 229, 231, 232);
+			
 			/***
 			 * TRANSPORT AND COMMUNICATIONS AND COMMUNICATION 
 			 * Expedition Building, terminal 
@@ -125,29 +127,46 @@ public class BygningerPlugin extends AbstractParserPlugin {
 			byg(642, "amenity=library");
 			byg(643, "tourism=zoo");
 			// 649 ???
+			byg(651, "leisure=sports_centre");
+			byg(652, "leisure=ice_rink,sport=ice_skating");
+			byg(653, "leisure=swimming_pool");
+			// 654 tribuene, umkleide?
+			byg(655, "leisure=sports_centre,sport=fitness");
+			// 659 other sports
+			byg(661, "amenity=theatre");
+			byg(662, "amenity=community_centre");
+			byg(663, "amenity=nightclub");
+			// 669 other culture building
+			byg(671, "amenity=place_of_worship,building=church,religion=christian");
+			byg(672, "amenity=parish_hall");
+			byg(673, "amenity=crematorium");
+			// jewish or moslem...nice one
+			byg(674, "amenity=place_of_worship");
+			// kloster
+			byg(674, "amenity=place_of_worship,building=monastery");
+			// 679 other religious buildings
 			
+			buildingGroup("amenity=hospital,building=hospital", 711, 712, 713, 714, 719);
+			byg(721, "amenity=nursing_home");
+			byg(722, "amenity=retirement_home");
+			byg(723, "amenity=hospital"); // rehabilitation center
+			byg(729, "amenity=nursing_home"); // other nursing home
+			buildingGroup("amenity=clinic", 731, 732, 739);
 			
+			byg(819, "amenity=prison");
+			byg(821, "amenity=police");
+			byg(822, "amenity=fire_station");
+			byg(823, "man_made=lighthouse");
+			byg(824, "man_made=tower,tower:type=radar");
+			byg(825, "military=bunker");
+			// 829 other contigency building
 			
+			byg(830, "historic=monument");
+			byg(840, "amenity=toilets");
+
+			byg(956, "tourism=alpine_hut"); // TODO: parse additional info
 			
-			byg(671, "building=church");
-			// FIXME: many different buildings here
-			buildingGroup("building=civic", 662, 672, 674, 675, 679);
-			buildingGroup("building=hospital,amenity=hospital", 711, 712, 713);
-			buildingGroup("amenity=nursing_home", 714, 719, 721, 722, 723, 729);
-			buildingGroup("amenity=school,building=school", 613, 614, 615, 616, 619, 621, 629);
-			buildingGroup("building=industrial,industrial=yes", 211, 212, 214, 219, 221, 229, 231, 232);
-			buildingGroup("building=transportation", 411, 415, 419);
-			buildingGroup("tourism=yes", 641, 643, 661, 669 ); // culture
-			buildingGroup("sport=yes", 651, 652, 653);
-			buildingGroup("building=yes", 151, 223, 233, 239, 312, 313, 319, 321,
-					322, 323, 329, 330, 412, 416, 429, 431,
-					439, 441, 449, 532, 611, 612, 623, 642,
-					649, 655, 659, 663, 673, 690, 731, 732,
-					739, 819, 821, 822, 823, 824, 825, 829,
-					999);
-			buildingGroup("amenity=townhall", 311);
-			buildingGroup("tourism=hotel", 511, 512, 519, 521, 522, 523, 529);
-			buildingGroup("tourism=alpine_hut", 956);
+			//999 unknown
 			
 		}
 		

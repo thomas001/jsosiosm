@@ -1,5 +1,6 @@
 package thomas001le.jsosiosm.sosi;
 
+import java.io.PrintStream;
 import java.util.List;
 
 public class Group {
@@ -47,20 +48,24 @@ public class Group {
 		this.values = values;
 	}
 	
-	private void pprint(String prefix) {
-		System.out.printf("%s%s %d:", prefix, getName(), getSn());
+	private void pprint(PrintStream out, String prefix) {
+		out.printf("%s%s %d:", prefix, getName(), getSn());
 		for(Object value: getValues() ) {
-			System.out.printf(" %s", value);
+			out.printf(" %s", value);
 		}
-		System.out.println();
+		out.println();
 		String new_prefix = prefix + ".";
 		for(Group cld : getChildren()) {
-			cld.pprint(new_prefix);
+			cld.pprint(out, new_prefix);
 		}
 	}
-
+	
 	public void pprint() {
-		pprint(".");
+		pprint(System.out);
+	}
+
+	public void pprint(PrintStream out) {
+		pprint(out, ".");
 	}
 	
 }

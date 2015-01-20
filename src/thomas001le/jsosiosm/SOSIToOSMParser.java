@@ -150,7 +150,9 @@ public class SOSIToOSMParser extends SOSIParser<OSMGroup> {
 				return;
 			}
 			if(res == TagsResult.WARN) {
-				System.err.println("Warned while parsing group!");
+				System.err.println("Warned while parsing group:");
+				t.pprint(System.err);
+				System.err.println();
 				return;
 			}
 			
